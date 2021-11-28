@@ -9,10 +9,14 @@ import hello.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
-    // 클라이언트(OrderServiceImpl)가 인터페이스(추상)에만 의존하도록 변경 but 테스트하면, nullPointerException 에러 발생(Null에다 점찍어서)
-    private DiscountPolicy discountPolicy;
+    // 생성자 주입 for DI
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
