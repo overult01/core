@@ -1,5 +1,9 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService{
 
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -7,6 +11,7 @@ public class MemberServiceImpl implements MemberService{
     // AppConfig 로 '환경 구성' 이관하기 위해 수정한 코드
     private final MemberRepository memberRepository;
 
+    @Autowired  // ac.getBean(MemberRepository.class) 처럼 동작
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
