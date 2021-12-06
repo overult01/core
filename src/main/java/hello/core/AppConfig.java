@@ -14,20 +14,36 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
+
+    // @Bean memberService -> new MemoryMemberRepository()
+    // @Bean orderService -> new MemoryMemberRepository()
+    
     // 공연기획자 역(애플리케이션의 전체 동작 방식을 구성: 구현 객체를 생성& 연결 담당)
+
+    // call AppConfig.memberService
+    // call AppConfig.MemberRepository
+    // call AppConfig.MemberRepository
+    // call AppConfig.orderService
+
+    // call AppConfig.memberService
+    // call AppConfig.MemberRepository
+    // call AppConfig.orderService
 
     @Bean
     public static MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(MemberRepository());
     }
 
     @Bean
     public static MemberRepository MemberRepository() {
+        System.out.println("call AppConfig.MemberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(MemberRepository(), discountPolicy());
     }
 
@@ -35,5 +51,4 @@ public class AppConfig {
     public DiscountPolicy discountPolicy() {
         return new RateDiscountPolicy();
     }
-
 }
