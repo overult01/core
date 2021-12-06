@@ -20,31 +20,22 @@ public class AppConfig {
     
     // 공연기획자 역(애플리케이션의 전체 동작 방식을 구성: 구현 객체를 생성& 연결 담당)
 
-    // call AppConfig.memberService
-    // call AppConfig.MemberRepository
-    // call AppConfig.MemberRepository
-    // call AppConfig.orderService
-
-    // call AppConfig.memberService
-    // call AppConfig.MemberRepository
-    // call AppConfig.orderService
-
     @Bean
-    public static MemberService memberService() {
+    public MemberService memberService() {
         System.out.println("call AppConfig.memberService");
-        return new MemberServiceImpl(MemberRepository());
+        return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
-    public static MemberRepository MemberRepository() {
-        System.out.println("call AppConfig.MemberRepository");
+    public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
         System.out.println("call AppConfig.orderService");
-        return new OrderServiceImpl(MemberRepository(), discountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
     @Bean
