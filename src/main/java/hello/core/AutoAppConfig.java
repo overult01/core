@@ -17,9 +17,9 @@ import org.springframework.context.annotation.FilterType;
 public class AutoAppConfig {
 
     // 수동 빈 등록으로 자동 빈 등록과 충돌이 나게끔
-    @Bean(name = "memoryMemberRepository")
-    MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
-    }
+//    @Bean(name = "memoryMemberRepository")
+//    MemberRepository memberRepository() {
+//        return new MemoryMemberRepository();
+//    }
 
 }
