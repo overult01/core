@@ -11,18 +11,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPolicy;
-
+    private MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
 
 
     // 생성자 주입 for DI
     // 롬복의 @RequiredArgsConstructor 가 생성자를 만들어주었다! (final 값 대상)
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        System.out.println("1. OrderServiceImpl.OrderServiceImpl");
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
+//         테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
+
+
+    // 일반 메서드 주입
+//    @Autowired
+//    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
 //        this.memberRepository = memberRepository;
 //        this.discountPolicy = discountPolicy;
 //    }

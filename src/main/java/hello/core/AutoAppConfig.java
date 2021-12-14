@@ -1,7 +1,11 @@
 package hello.core;
 
+import hello.core.discount.DiscountPolicy;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import hello.core.order.OrderService;
+import hello.core.order.OrderServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +19,11 @@ import org.springframework.context.annotation.FilterType;
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
 )
 public class AutoAppConfig {
+
+//    @Bean
+//    OrderService orderService(MemberRepository memberRepository,DiscountPolicy discountPolicy) {
+//        return new OrderServiceImpl(memberRepository,discountPolicy);
+//    }
 
     // 수동 빈 등록으로 자동 빈 등록과 충돌이 나게끔
 //    @Bean(name = "memoryMemberRepository")

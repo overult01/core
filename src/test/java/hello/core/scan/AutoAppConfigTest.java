@@ -20,8 +20,8 @@ public class AutoAppConfigTest {
         assertThat(memberService).isInstanceOf(MemberService.class);
 
         // 필드 주입 방법(의존관계를 필드에 바로 넣어주는 방법, private 인데도 가능!)
-        OrderServiceImpl bean = ac.getBean(OrderServiceImpl.class);
-        MemberRepository memberRepository = bean.getMemberRepository();
-        System.out.println("memberRepository = " + memberRepository);
+//        OrderServiceImpl bean = ac.getBean(OrderServiceImpl.class);
+//        MemberRepository memberRepository = bean.getMemberRepository();
+//        System.out.println("memberRepository = " + memberRepository);
     }
 }
