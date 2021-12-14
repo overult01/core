@@ -8,6 +8,7 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,6 +16,10 @@ public class OrderServiceImpl implements OrderService{
 
     private MemberRepository memberRepository;
     private DiscountPolicy discountPolicy;
+
+    // 조회 대상 빈이 2개 이상일 때 - @Autowired로 매칭(필드명, 파라미터명)
+    @Autowired
+    private DiscountPolicy rateDiscountPolicy;
 
 
     // 생성자 주입 for DI
