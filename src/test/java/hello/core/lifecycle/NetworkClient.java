@@ -1,5 +1,8 @@
 package hello.core.lifecycle;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 // 가짜 네트워크 클라이언트
 public class NetworkClient {
 
@@ -27,12 +30,14 @@ public class NetworkClient {
         System.out.println("close " + url);
     }
 
+    @PostConstruct // 초기화 메서드(생성된 이후에)
     public void init() {
         System.out.println("NetworkClient.init");
         connect();
         call("초기화 연결 메세지");
     }
 
+    @PreDestroy // 소멸 메서드(소멸되기 전에)
     public void close() {
         System.out.println("NetworkClient.close");
         disconnect();
