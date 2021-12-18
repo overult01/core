@@ -3,6 +3,7 @@ package hello.core.scope;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotatedBeanDefinitionReader;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -44,14 +45,18 @@ public class SingletonWithPrototypeTest1 {
 
     @Scope("singleton") //싱글톤 스코프는 디폴트 값이라 원래는 생략 가능
     static class ClientBean {
-        private final PrototypeBean prototypeBean; // 생성시점에 주입
+//        private final PrototypeBean prototypeBean; // 생성시점에 주입
 
-        @Autowired // 생성 1개라서 @Autowired도 생략 가능
-        public ClientBean(PrototypeBean prototypeBean) {
-            this.prototypeBean = prototypeBean;
-        }
+        @Autowired
+        ApplicationContext applicationContext;
+
+//        @Autowired // 생성 1개라서 @Autowired도 생략 가능
+//        public ClientBean(PrototypeBean prototypeBean) {
+//            this.prototypeBean = prototypeBean;
+//        }
 
         public int logic() {
+            PrototypeBean prototypeBean = applicationContext.getBean(PrototypeBean.class);
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }
