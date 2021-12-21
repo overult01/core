@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Provider;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -47,10 +48,10 @@ public class SingletonWithPrototypeTest1 {
     @Scope("singleton") //싱글톤 스코프는 디폴트 값이라 원래는 생략 가능
     static class ClientBean {
         @Autowired
-        private ObjectProvider<PrototypeBean> prototypeBeansProvider;
+        private Provider<PrototypeBean> prototypeBeansProvider;
 
         public int logic() {
-            PrototypeBean prototypeBean = prototypeBeansProvider.getObject();
+            PrototypeBean prototypeBean = prototypeBeansProvider.get();
             prototypeBean.addCount();
             int count = prototypeBean.getCount();
             return count;
